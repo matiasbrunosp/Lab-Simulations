@@ -13,23 +13,19 @@ module.exports = {
         selectGoogles() {
             this.useCss();
             this.waitForElementVisible(this.elements.googlesEl);
-            this.click(this.elements.googlesEl);
-            return this;
+            return this.click(this.elements.googlesEl);
         },
 
         selectLabCoat() {
-            this.click(this.elements.labCoatEl);
-            return this;
+            return this.click(this.elements.labCoatEl);
         },
 
         selectGloves() {
-            this.click(this.elements.glovesEl);
-            return this;
+            return this.click(this.elements.glovesEl);
         },
 
         clickSkipAnimation() {
-            this.click(this.elements.skipAnimationBtn);
-            return this;
+            return this.click(this.elements.skipAnimationBtn);
         },
 
         isSkipAnimationButtonNotDisabled() {

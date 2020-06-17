@@ -7,8 +7,7 @@ module.exports = {
         startLab() {
             this.useCss();
             this.waitForElementVisible(this.elements.startLabBtn);
-            this.click(this.elements.startLabBtn)
-            return this;
+            return this.click(this.elements.startLabBtn)
         }
     }]
 };

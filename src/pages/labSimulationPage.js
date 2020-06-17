@@ -21,22 +21,27 @@ module.exports = {
             return this.click(this.elements.materialsList);
         },
 
-        beakerOnBench() {
+        beakerOnBench(nightwatch) {
+            const beakerDragging = '.Beaker50ml-dragging';
+
             this.click(this.elements.beakerEl);
-            this.sendKeys(this.elements.beakerEl, this.Keys.SPACE);
-            this.sendKeys('.Beaker50ml-dragging', this.Keys.TAB);
+            this.sendKeys(this.elements.beakerEl, nightwatch.Keys.SPACE);
+            this.sendKeys(beakerDragging, nightwatch.Keys.TAB);
             return this.clickBench();
         },
 
-        waterOnBeaker() {
+        waterOnBeaker(nightwatch) {
+            const bottleDragging = '.PLASTIC_H2O_BOTTLE-dragging';
+
             this.clickMaterialsList();
             this.sendKeys(this.elements.materialsList, [nightwatch.Keys.SHIFT, nightwatch.Keys.ENTER]);
             this.sendKeys(this.elements.waterEl, nightwatch.Keys.SPACE);
-            this.sendKeys('.PLASTIC_H2O_BOTTLE-dragging', nightwatch.Keys.TAB);
-            this.sendKeys('.PLASTIC_H2O_BOTTLE-dragging', nightwatch.Keys.TAB);
-            this.sendKeys('.PLASTIC_H2O_BOTTLE-dragging', nightwatch.Keys.TAB);
-            this.sendKeys('.PLASTIC_H2O_BOTTLE-dragging', nightwatch.Keys.TAB);
-            return this.sendKeys('.PLASTIC_H2O_BOTTLE-dragging', nightwatch.Keys.SPACE);
+
+            this.sendKeys(bottleDragging, nightwatch.Keys.TAB);
+            this.sendKeys(bottleDragging, nightwatch.Keys.TAB);
+            this.sendKeys(bottleDragging, nightwatch.Keys.TAB);
+            this.sendKeys(bottleDragging, nightwatch.Keys.TAB);
+            return this.sendKeys(bottleDragging, nightwatch.Keys.SPACE);
         },
 
         setRndAmount() {

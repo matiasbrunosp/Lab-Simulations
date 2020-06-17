@@ -9,20 +9,17 @@ module.exports = {
         setUsername(usr) {
             this.pause(2000);
             this.waitForElementVisible(this.elements.usrInput);
-            this.sendKeys(this.elements.usrInput, usr);
-            return this;
+            return this.sendKeys(this.elements.usrInput, usr);
         },
 
         setPassword(pwd) {
             this.waitForElementVisible(this.elements.pwdInput);
-            this.sendKeys(this.elements.pwdInput, pwd);
-            return this;
+            return this.sendKeys(this.elements.pwdInput, pwd);
         },
 
         clickLogin() {
             this.waitForElementVisible(this.elements.submitBtn);
-            this.click(this.elements.submitBtn);
-            return this;
+            return this.click(this.elements.submitBtn);
         }
     }]
 };
