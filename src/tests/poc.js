@@ -13,15 +13,17 @@ module.exports = {
         var data = require('../utils/data.json');
 
         const loginPage = nightwatch.page.loginPage();
+        const coursesPage = nightwatch.page.coursesPage();
         const coursesDetailsPage = nightwatch.page.courseDetailsPage();
         const startLabPage = nightwatch.page.startLabPage();
         const ppePage = nightwatch.page.ppePage();
         const labSimulationPage = nightwatch.page.labSimulationPage();
 
-        loginPage.setUsername(data.username).setPassword(data.password).clickLogin()
+        loginPage.setUsername(data.username).setPassword(data.password).clickLogin();
+        coursesPage.clickCourse("SAVISPARK");
 
-        nightwatch.useXpath().click('//h4[contains(text(), "SAVISPARK")]');
-        nightwatch.waitForElementVisible('//h1[contains(text(), "SAVISPARK")]');
+        // nightwatch.useXpath().click('//h4[contains(text(), "SAVISPARK")]');
+        // nightwatch.waitForElementVisible('//h1[contains(text(), "SAVISPARK")]');
 
         coursesDetailsPage.goToLab("Santi's link");
         startLabPage.startLab();

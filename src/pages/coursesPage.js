@@ -1,13 +1,16 @@
 module.exports = {
     elements: {
-        coursesTitle: '//h1[contains(text(), "Courses Page")]',
-        savisparkLink: '//h4[contains(text(), "SAVISPARK")]'
+        coursesTitle: {
+            selector: '//h1[contains(text(), "Courses Page")]',
+            locateStrategy: 'xpath'
+        }
     },
 
     commands: [{
-        clickSaviSpark() {
-            this.useXpath().waitForElementVisible(this.elements.savisparkLink);
-            return this.click(this.elements.savisparkLink);
+        clickCourse(course) {
+            this.useXpath();
+            this.waitForElementVisible(this.elements.coursesTitle);
+            return this.click(`//h4[contains(text(), "${course}")]`);
         }
     }]
 };
