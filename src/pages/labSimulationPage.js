@@ -5,7 +5,11 @@ module.exports = {
         beakerEl: '[aria-label="50 mL beaker"]',
         waterEl: '[aria-label="water"]',
         limitAmountTxt: '.lab-simulation-bodyText span',
-        modalInput: '.modal.default input'
+        modalInput: '.modal.default input',
+        addBtn: {
+            selector: '//button[contains(text(), "Add")]',
+            locateStrategy: 'xpath'
+        }
     },
 
     commands: [{
@@ -18,10 +22,10 @@ module.exports = {
         },
 
         beakerOnBench() {
-            this.clickBench();
+            this.click(this.elements.beakerEl);
             this.sendKeys(this.elements.beakerEl, this.Keys.SPACE);
             this.sendKeys('.Beaker50ml-dragging', this.Keys.TAB);
-            return this.click(this.elements.benchEl);
+            return this.clickBench();
         },
 
         waterOnBeaker() {
@@ -42,6 +46,29 @@ module.exports = {
                 const amount = Math.floor((Math.random() * max) + 1);
                 return this.sendKeys('.modal.default input', amount);
             });
+        },
+
+        isBenchOccupied() {
+            return this.assert.cssClassPresent(this.elements.benchEl, "savi-dnd-target-occupied");
+        },
+
+        isBenchNotOccupied() {
+            this.useCss();
+            return this.assert.not.cssClassPresent(this.elements.benchEl, "savi-dnd-target-occupied");
+        },
+
+        clickAddButton() {
+            return this.click('//button[contains(text(), "Add")]');
+        },
+
+        isAddButtonDisabled() {
+            this.useXpath();
+            return this.expect.element(this.elements.addBtn).to.have.attribute('disabled');
+        },
+
+        isAddButtonNotDisabled() {
+            this.useXpath();
+            return this.expect.element(this.elements.addBtn).to.not.have.attribute('disabled');
         }
     }]
 };

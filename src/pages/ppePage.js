@@ -3,7 +3,10 @@ module.exports = {
         googlesEl: '[name="Goggles"]',
         labCoatEl: '[name="Lab Coat"]',
         glovesEl: '[name="Gloves"]',
-        skipAnimationBtn: '//button[contains(text(), "Skip Animation")]'
+        skipAnimationBtn: {
+            selector: '//button[contains(text(), "Skip Animation")]',
+            locateStrategy: 'xpath'
+        }
     },
 
     commands: [{
@@ -25,9 +28,14 @@ module.exports = {
         },
 
         clickSkipAnimation() {
-            this.useXpath();
             this.click(this.elements.skipAnimationBtn);
             return this;
+        },
+
+        isSkipAnimationButtonNotDisabled() {
+            this.useXpath();
+            return this.expect.element(this.elements.skipAnimationBtn)
+                .to.not.have.attribute('disabled');
         }
     }]
 };
