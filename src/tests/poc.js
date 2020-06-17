@@ -1,7 +1,7 @@
+var data = require('../utils/data.json');
 module.exports = {
-
     before: function (nightwatch) {
-        nightwatch.url('https://www.saplinglearning.com/ibiscms/login/');
+        nightwatch.url(data.saplingLearningUrl);
     },
 
     after: function (nightwatch) {
@@ -9,20 +9,17 @@ module.exports = {
     },
 
     'POC': function (nightwatch) {
-        var data = require('../utils/data.json');
         const course = 'SAVISPARK';
         const lab = 'Santi\'s link';
 
-        const loginPage = nightwatch.page.loginPage();
         const coursesPage = nightwatch.page.coursesPage();
         const coursesDetailsPage = nightwatch.page.courseDetailsPage();
         const startLabPage = nightwatch.page.startLabPage();
         const ppePage = nightwatch.page.ppePage();
         const labSimulationPage = nightwatch.page.labSimulationPage();
 
-        loginPage.setUsername(data.username).setPassword(data.password)
-        loginPage.clickLogin();
-
+        nightwatch.login(data.username, data.password);
+        
         coursesPage.clickCourse(course);
         coursesDetailsPage.isCourseTitleDisplayed(course);
         coursesDetailsPage.goToLab(lab);

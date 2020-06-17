@@ -7,7 +7,6 @@ module.exports = {
 
     commands: [{
         setUsername(usr) {
-            this.pause(2000);
             this.waitForElementVisible(this.elements.usrInput);
             return this.sendKeys(this.elements.usrInput, usr);
         },
